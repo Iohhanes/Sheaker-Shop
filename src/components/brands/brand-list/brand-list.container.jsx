@@ -1,6 +1,6 @@
 import React from 'react';
-import BrandList from './brand-list.component';
 import { useSelector } from 'react-redux';
+import BrandList from './brand-list.component';
 import {
   selectActiveBrand,
   selectBrandsIds,
@@ -16,4 +16,4 @@ const BrandListContainer = () => {
   return loading ? <BrandListLoader /> : <BrandList ids={ids} active={active} />;
 };
 
-export default BrandListContainer;
+export default React.memo(BrandListContainer);

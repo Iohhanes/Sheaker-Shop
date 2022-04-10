@@ -6,12 +6,10 @@ import { createSneakersServer } from '../server';
 
 createSneakersServer();
 
-const SneakersShopAppWrapper = () => {
-  return (
-    <Provider store={store}>
-      <SneakersShopApp />
-    </Provider>
-  );
-};
+const SneakersShopAppWrapper = () => (
+  <Provider store={store}>
+    <SneakersShopApp />
+  </Provider>
+);
 
 export default SneakersShopAppWrapper;

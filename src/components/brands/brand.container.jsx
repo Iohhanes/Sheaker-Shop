@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import Brand from './brand.component';
 import { useDispatch, useSelector } from 'react-redux';
+import Brand from './brand.component';
 import { selectBrandById } from '../../store/brands/brands.selectors';
 import { setActive } from '../../store/brands/brands.slice';
 import { loadProductsByBrand } from '../../store/products/products.slice';
@@ -14,7 +14,7 @@ const BrandContainer = ({ id, active }) => {
   const handlePress = useCallback(() => {
     dispatch(setActive(id));
     dispatch(loadProductsByBrand(id));
-  }, [id]);
+  }, [dispatch, id]);
 
   return <Brand onPress={handlePress} icon={brand.icon} selected={active === id} />;
 };

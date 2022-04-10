@@ -1,12 +1,20 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createServer } from 'miragejs';
 
+const nikeBrandIcon = require('./assets/icons/nike.png');
+const adidasBrandIcon = require('./assets/icons/adidas.png');
+const pumaBrandIcon = require('./assets/icons/puma.png');
+const jordanBrandIcon = require('./assets/icons/jordan.png');
+const asicsBrandIcon = require('./assets/icons/asics.png');
+const newBalanceBrandIcon = require('./assets/icons/new-balance.png');
+
 const BRANDS = {
-  1: require('./assets/icons/nike.png'),
-  2: require('./assets/icons/adidas.png'),
-  3: require('./assets/icons/puma.png'),
-  4: require('./assets/icons/jordan.png'),
-  5: require('./assets/icons/asics.png'),
-  6: require('./assets/icons/new-balance.png'),
+  1: nikeBrandIcon,
+  2: adidasBrandIcon,
+  3: pumaBrandIcon,
+  4: jordanBrandIcon,
+  5: asicsBrandIcon,
+  6: newBalanceBrandIcon,
 };
 
 const PRODUCT_TITTLES = [
@@ -25,29 +33,29 @@ const DEFAULT_PRODUCTS_BY_BRAND_COUNT = 15;
 
 export function createSneakersServer() {
   if (window.server) {
-    server.shutdown();
+    window.server.shutdown();
   }
 
   window.server = createServer({
     routes() {
       this.get('/api/brands', () => {
         setTimeout(() => {}, 10000);
-        let entities = {};
-        for (const [key, value] of Object.entries(BRANDS)) {
+        const entities = {};
+        Object.entries(BRANDS).forEach(([key, value]) => {
           entities[key] = {
             id: key,
             icon: value,
           };
-        }
+        });
         return {
           ids: Object.keys(BRANDS).map((id) => id.toString()),
-          entities: entities,
+          entities,
         };
       });
       this.get('/api/products', (_, request) => {
         const brandId = request.queryParams.brand;
-        let ids = [];
-        let entities = {};
+        const ids = [];
+        const entities = {};
         for (let i = 1; i <= DEFAULT_PRODUCTS_BY_BRAND_COUNT; i++) {
           ids.push(i.toString());
           entities[i] = {
@@ -59,9 +67,16 @@ export function createSneakersServer() {
         }
         setTimeout(() => {}, 10000);
         return {
-          ids: ids,
-          entities: entities,
+          ids,
+          entities,
         };
+      });
+      this.get('/api/products/search', (_, request) => {
+        const { searchValue, range } = request.queryParams;
+        setTimeout(() => {}, 10000);
+        return PRODUCT_TITTLES.filter((title) => title.toLowerCase().includes(searchValue))
+          .map((value, index) => ({ id: index.toString(), title: value }))
+          .slice(0, range);
       });
     },
   });

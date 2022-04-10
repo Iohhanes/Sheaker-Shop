@@ -2,17 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Image, Text, View } from 'react-native';
 
-const Product = ({ title, image, price }) => {
-  return (
-    <View style={styles.product}>
-      <View style={styles.productImageContainer}>
-        <Image style={styles.productImage} source={image} />
-      </View>
-      <Text style={styles.productTitle}>{title}</Text>
-      <Text style={styles.productPrice}>{price + ' $'}</Text>
+const Product = ({ title, image, price }) => (
+  <View style={styles.product}>
+    <View style={styles.productImageContainer}>
+      <Image style={styles.productImage} source={image} />
     </View>
-  );
-};
+    <Text style={styles.productTitle}>{title}</Text>
+    <Text style={styles.productPrice}>{`${price} $`}</Text>
+  </View>
+);
 
 Product.propTypes = {
   title: PropTypes.string.isRequired,

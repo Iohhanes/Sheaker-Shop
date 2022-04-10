@@ -1,16 +1,14 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-const BrandListLoader = () => {
-  return (
-    <View style={styles.brandListLoader}>
-      <View style={styles.brandLoader} />
-      <View style={styles.brandLoader} />
-      <View style={styles.brandLoader} />
-      <View style={styles.brandLoader} />
-    </View>
-  );
-};
+const BrandListLoader = () => (
+  <View style={styles.brandListLoader}>
+    <View style={styles.brandLoader} />
+    <View style={styles.brandLoader} />
+    <View style={styles.brandLoader} />
+    <View style={styles.brandLoader} />
+  </View>
+);
 
 const styles = StyleSheet.create({
   brandListLoader: {

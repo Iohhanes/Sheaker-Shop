@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import BrandListContainer from './components/brands/brand-list/brand-list.container';
 import { loadBrands, setActive } from './store/brands/brands.slice';
-import { useDispatch } from 'react-redux';
 import ProductListContainer from './components/products/product-list/product-list.container';
 import { loadProductsByBrand } from './store/products/products.slice';
 import HeaderContainer from './components/header/header.container';
@@ -18,7 +18,7 @@ const SneakersShopApp = () => {
         dispatch(loadProductsByBrand(firstId));
       }
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <View style={styles.body}>

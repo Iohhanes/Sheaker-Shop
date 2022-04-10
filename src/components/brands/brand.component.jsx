@@ -2,19 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Image, View, Pressable } from 'react-native';
 
-const Brand = ({ icon, selected, onPress }) => {
-  return (
-    <Pressable onPress={onPress}>
-      <View style={styles.brand}>
-        <Image style={selected ? styles.selectedBrand : styles.brandIcon} source={icon} />
-      </View>
-    </Pressable>
-  );
-};
+const Brand = ({ icon, selected = false, onPress }) => (
+  <Pressable onPress={onPress}>
+    <View style={styles.brand}>
+      <Image style={selected ? styles.selectedBrand : styles.brandIcon} source={icon} />
+    </View>
+  </Pressable>
+);
 
 Brand.propTypes = {
   icon: PropTypes.number.isRequired,
-  active: PropTypes.bool,
+  selected: PropTypes.bool,
   onPress: PropTypes.func.isRequired,
 };
 
